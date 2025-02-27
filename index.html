@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Archive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="page-header" class="header">
+        <span class="page-title" id="page-header-text">Web Archive</span>
+    </div>
+    <div id="page-body">
+        <div id="page-body-leftbar">
+            <div id="leftbar-options">
+                <input type="text" name="search" id="search-text" placeholder="Search ...">
+            </div>
+            <div id="leftbar-list">
+
+            </div>
+        </div>
+        <div id="page-body-rightbar">
+            <div class="rightbar-sub-container" id="rightbar-welcome-page-container">
+                <span class="header" id="welcome-page-header">
+                    Welcome to <span class="page-title">Web Archive</span> Portal !
+                </span>
+                <span class="sub-header" id="welcome-page-subheader">
+                    Enter a subject title or question to search or Just simply click on topic to open it.
+                </span>
+            </div>
+            <div class="rightbar-sub-container" id="post-page-container">
+                <div id="post-close-btn-container">
+                    <div id="post-close-btn">&#10006;</div>
+                </div>
+                <div id="post-page-post-space">
+                    <span class="post-header" id="post-page-post-header">Topic</span>
+                    <div class="post-container post-page-post-container" id="post-page-post-container">
+                        <span class="post-title rightbar-post-title" id="post-page-post-title">Empty</span>
+                        <span class="post-body rightbar-post-body" id="post-page-post-body">Empty</span>
+                    </div>
+                    <div class="user-details post-user-detail" id="post-user-detail">
+                        <span class="user-details-uname" id="post-user-uname">Empty</span>
+                        <span class="user-details-email" id="post-user-email">Empty</span>
+                    </div>
+                </div>
+                <div id="comment-list-space">
+                    <span class="post-header" id="comment-list-header">Comments</span>
+                    <div id="comment-list">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
