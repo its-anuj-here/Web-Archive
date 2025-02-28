@@ -208,9 +208,9 @@ input[type=text], textarea{
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     padding: 1.5vh 0.8vw 1.8vh 1vw;
+    box-shadow: 0.21rem 0.15rem 1.5px 1.5px #004cbec9;
 }
 .post-title.rightbar-post-title{
-    color: rgb(69, 69, 69);
     color: #004cbec9
 }
 
@@ -220,9 +220,8 @@ input[type=text], textarea{
     background-color: #e2e2e2;
     padding: 0.2rem 0.5rem;
     font-size: 1.2rem;
-    border-radius: 8px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-radius: 0 0 9px 9px;
+    box-shadow: 0.21rem 0.22rem 1.5px 1.5px #004cbec9;
     color: #4e4e4e;
 }
 
@@ -249,7 +248,8 @@ input[type=text], textarea{
     color: white;
     background-color: #4e4e4e;;
     row-gap: 1vh;
-    border-radius: 8px;
+    border-radius: 0 8px 8px 0;
+    border-left: 0.3rem solid white;
     padding: 1.5vh 0.8vw 1.8vh 1vw;
 }
 .comment-name {
@@ -264,12 +264,17 @@ input[type=text], textarea{
     font-weight: 400;
     display: block;
     user-select: none;
+    background-color: #8a898973;
+    width: 75%;
+    padding: 0.2rem 0.3rem;
+    border-radius: 7px;
 }
 .comment-creation-detail{
     color: #ff97a0;
 }
 .highlight-post{
     background-color: #0085F21A !important;
+    border-right: 0.5rem solid #2a6ed3;
 }
 
 .highlight-post>.post-title{
