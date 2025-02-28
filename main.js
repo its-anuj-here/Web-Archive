@@ -13,19 +13,31 @@ fetchAllPost();
 postCloseBtn.addEventListener('click', showWelcomeSide);
 
 searchBar.addEventListener('keyup', ()=>{
-
     leftBarList.innerHTML='';
     if(searchBar.value.trim()!=''){
-        for (const post of Object.values(allPostObj)) {
-            if(new RegExp(searchBar.value.trim(), "i").test(post.title) || new RegExp(searchBar.value.trim(), "i").test(post.body)){
-                insertQuestionInHTML(post);
-                if(searchBar.value.trim().length>3){
-                    highlightSearched(searchBar.value.trim());
+        let search = searchBar.value.trim();
+        if(search[0]==='@'){
+            let username = search.slice(1,search.length);
+            for (const post of Object.values(allPostObj)) {
+                if(new RegExp(username, "i").test(post.userDetail.username)){
+                    insertQuestionInHTML(post);
+                    if(username.length>1){
+                        highlightSearched(username, true);
+                    }
+                    
                 }
-                
+            }
+        }else{
+            for (const post of Object.values(allPostObj)) {
+                if(new RegExp(search, "i").test(post.title) || new RegExp(search, "i").test(post.body)){
+                    insertQuestionInHTML(post);
+                    if(search.length>3){
+                        highlightSearched(search, false);
+                    }
+                    
+                }
             }
         }
-
     }
     else{
         for (const value of Object.values(allPostObj)) {
@@ -60,35 +72,46 @@ function highLightCurrentPost(postId){
 
 }
 
-function highlightSearched(text){
-    Array.from(document.getElementsByClassName('post-title')).forEach((ele)=>{
-        if(!ele.classList.contains('rightbar-post-title')){
+function highlightSearched(text, usedUsername){
+    if(usedUsername){
+        Array.from(document.getElementsByClassName('post-creation-detail')).forEach((ele)=>{
             let ogText = ele.innerText.toString();
             let newText = ogText;
             let pos = newText.search(new RegExp(text, "ig"));
-            while (pos !== -1) {
-                let rep = newText.slice(pos,  pos + text.length);
-                ogText = ogText.replace(rep, "<highlight>"+rep+"</highlight>" );
-                newText = newText.slice(pos + text.length, newText.length);
-                pos = newText.search(new RegExp(text, "ig"));
-            }
+            let rep = newText.slice(pos,  pos + text.length);
+            ogText = ogText.replace(rep, "<highlight>"+rep+"</highlight>" );
             ele.innerHTML =  ogText;
-        }
-    });
-    Array.from(document.getElementsByClassName('post-body')).forEach((ele)=>{
-        if(!ele.classList.contains('rightbar-post-body')){
-            let ogText = ele.innerText.toString();
-            let newText = ogText;
-            let pos = newText.search(new RegExp(text, "ig"));
-            while (pos !== -1) {
-                let rep = newText.slice(pos,  pos + text.length);
-                ogText = ogText.replace(rep, "<highlight>"+rep+"</highlight>" );
-                newText = newText.slice(pos + text.length, newText.length);
-                pos = newText.search(new RegExp(text, "ig"));
+        });
+    }else{
+        Array.from(document.getElementsByClassName('post-title')).forEach((ele)=>{
+            if(!ele.classList.contains('rightbar-post-title')){
+                let ogText = ele.innerText.toString();
+                let newText = ogText;
+                let pos = newText.search(new RegExp(text, "ig"));
+                while (pos !== -1) {
+                    let rep = newText.slice(pos,  pos + text.length);
+                    ogText = ogText.replace(rep, "<highlight>"+rep+"</highlight>" );
+                    newText = newText.slice(pos + text.length, newText.length);
+                    pos = newText.search(new RegExp(text, "ig"));
+                }
+                ele.innerHTML =  ogText;
             }
-            ele.innerHTML =  ogText;
-        }
-    });
+        });
+        Array.from(document.getElementsByClassName('post-body')).forEach((ele)=>{
+            if(!ele.classList.contains('rightbar-post-body')){
+                let ogText = ele.innerText.toString();
+                let newText = ogText;
+                let pos = newText.search(new RegExp(text, "ig"));
+                while (pos !== -1) {
+                    let rep = newText.slice(pos,  pos + text.length);
+                    ogText = ogText.replace(rep, "<highlight>"+rep+"</highlight>" );
+                    newText = newText.slice(pos + text.length, newText.length);
+                    pos = newText.search(new RegExp(text, "ig"));
+                }
+                ele.innerHTML =  ogText;
+            }
+        });
+    }   
 }
 
 function showWelcomeSide(){
